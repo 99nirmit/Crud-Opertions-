@@ -1,0 +1,17 @@
+// .custom {
+//   background-color: whitesmoke;
+//   border: 2px solid black;
+// }
+
+form{
+  background-color: whitesmoke;
+  border-radius: 15px;
+}
+td {
+  text-align: center;
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+  box-shadow: 0 0 13px #ff000000;
+}

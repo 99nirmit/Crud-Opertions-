@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-4">
+      <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm" class="custom">
+        <div class="form-group">
+          <label for="">First Name*</label>
+          <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter First Name" [(ngModel)]="selectedUsers.fname" required #fname="ngModel">
+          <small class="text-danger" *ngIf="!fname.valid && fname.touched">please enter first name</small>
+        </div>
+        <br> 
+        <div class="form-group">
+          <label for="">Last Name*</label>
+          <input type="text" class="form-control" id="lname " name="lname" placeholder="Enter Last Name" [(ngModel)]="selectedUsers.lname" required #lname="ngModel">
+          <small class="text-danger" *ngIf="!lname.valid && lname.touched">please enter last name</small>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="">Email address*</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" [(ngModel)]="selectedUsers.email" required #email="ngModel">
+          <small class="text-danger" *ngIf="!email.valid && email.touched">please enter email</small>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="">Password*</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" [(ngModel)]="selectedUsers.password" required #password="ngModel">
+          <small class="text-danger" *ngIf="!password.valid && password.touched">please enter password</small>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="">Age</label>
+          <input type="number" class="form-control" id="age" name="age" placeholder="Enter Age" [(ngModel)]="selectedUsers.age"  #age="ngModel">
+          <small class="text-danger" *ngIf="!password.valid && password.touched">please enter age</small>
+        </div>
+        <br>
+        <div class="form-group">
+          Gender
+          <div class="custom-control custom-radio" *ngFor="let gender of genders">
+          <input type="radio" class="form-check-input" id="{{gender.id}}" name="gender" [(ngModel)]="selectedUsers.gender" required #gender="ngModel" value="{{gender.value}}">
+          <label class="custom-control custom-radio" for="{{gender.id}}"></label>
+          {{gender.value}}
+          <small class="text-danger"></small>
+          </div>
+        </div>
+
+        <br>
+        <div class="form-group">
+          <label for="">Mobile No.*</label>
+          <input type="email" class="form-control" id="mobile" name="mobile" placeholder="Enter Mobile No." [(ngModel)]="selectedUsers.mobile" required #mobile="ngModel">
+          <small class="text-danger" *ngIf="!mobile.valid && mobile.touched">please enter mobile no.</small>
+        </div>
+        <br>
+        <button type="submit" [disabled]="!myForm.valid" class="btn btn-success">{{ isUpdate ? 'Update' : 'Submit'}}</button>
+        
+      </form>
+    </div>
+
+    <div class="col-8 custom">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Mobile No.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.fname}}</td>
+            <td>{{user.lname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.mobile}}</td>
+             <td>
+               <button type="submit" class="btn btn-info" (click)="editUser(i)">Edit User</button>
+              <button type="submit" class="btn btn-warning" (click)="deleteUser(i)">Delete User</button> 
+            </td>
+          </tr>
+          <tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
